@@ -1,0 +1,16 @@
+{
+  "swift.path": "/usr/bin/swift",
+  "swift.buildPath": "${workspaceFolder}/.build",
+  "swift.diagnosticsStyle": "llvm",
+  "swift.autoGenerateXCTestRun": true,
+  "files.associations": {
+    "*.swift": "swift",
+    "Package.swift": "swift"
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  }
+}

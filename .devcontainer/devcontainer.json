@@ -1,14 +1,17 @@
 {
   "name": "CCUsage Monitor Development",
-  "image": "ghcr.io/devcontainers/devcontainers/swift:1-5.10",
+  "image": "swift:5.10",
   "customizations": {
     "vscode": {
       "settings": {
-        "swift.path": "/usr/bin/swift"
+        "swift.path": "/usr/bin/swift",
+        "swift.buildPath": "/workspace/.build",
+        "swift.diagnosticsStyle": "llvm"
       },
       "extensions": [
         "sswg.swift-lang",
-        "ms-vscode.vscode-json"
+        "ms-vscode.vscode-json",
+        "vadimcn.vscode-lldb"
       ]
     }
   },
@@ -17,11 +20,16 @@
     "ghcr.io/devcontainers/features/node:1": {
       "version": "20"
     },
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true
+    }
   },
-  "postCreateCommand": "npm install -g ccusage",
-  "remoteUser": "vscode",
-  "mounts": [
-    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
-  ]
+  "postCreateCommand": "npm install -g ccusage && swift --version",
+  "remoteUser": "root",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [],
+  "portsAttributes": {}
 }
