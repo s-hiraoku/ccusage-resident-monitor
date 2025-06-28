@@ -1,6 +1,6 @@
 {
   "name": "CCUsage Monitor Development",
-  "image": "swift:5.10",
+  "image": "swift:latest",
   "customizations": {
     "vscode": {
       "settings": {
