@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:ccusage-resident-monitor}",
+      "name": "Debug CCUsageMonitor",
+      "program": "${workspaceFolder:ccusage-resident-monitor}/.build/debug/CCUsageMonitor",
+      "preLaunchTask": "swift: Build Debug CCUsageMonitor"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:ccusage-resident-monitor}",
+      "name": "Release CCUsageMonitor",
+      "program": "${workspaceFolder:ccusage-resident-monitor}/.build/release/CCUsageMonitor",
+      "preLaunchTask": "swift: Build Release CCUsageMonitor"
+    }
+  ]
+}

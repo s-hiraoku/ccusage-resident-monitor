@@ -1,5 +1,27 @@
 {
+  "name": "CCUsage Monitor Development",
+  "image": "ghcr.io/devcontainers/devcontainers/swift:1-5.10",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "swift.path": "/usr/bin/swift"
+      },
+      "extensions": [
+        "sswg.swift-lang",
+        "ms-vscode.vscode-json"
+      ]
+    }
+  },
   "features": {
-    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0.5": {}
-  }
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0.5": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "postCreateCommand": "npm install -g ccusage",
+  "remoteUser": "vscode",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ]
 }
