@@ -12,5 +12,14 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
-  }
+  },
+  "cSpell.words": [
+    "ccusage",
+    "xcodeproj",
+    "devcontainers",
+    "anthropics",
+    "menubar",
+    "swiftui",
+    "xcrun"
+  ]
 }
