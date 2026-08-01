@@ -62,7 +62,7 @@ class CCUsageMonitorApp {
     });
 
     ipcMain.on('close-window', (event: IpcMainEvent) => {
-      BrowserWindow.fromWebContents(event.sender)?.close();
+      BrowserWindow.fromWebContents(event.sender)?.hide();
     });
   }
 

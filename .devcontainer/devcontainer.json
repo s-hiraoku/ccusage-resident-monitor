@@ -14,5 +14,5 @@
     "ghcr.io/devcontainers/features/common-utils:2": {},
     "ghcr.io/devcontainers/features/git:1": {}
   },
-  "postCreateCommand": "echo 'Dev Container is ready!'"
+  "postCreateCommand": "npm ci && echo 'Dev Container is ready!'"
 }
