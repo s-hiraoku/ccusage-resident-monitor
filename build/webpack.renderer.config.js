@@ -62,9 +62,6 @@ module.exports = {
     hot: true,
     static: {
       directory: path.join(__dirname, '../dist/renderer')
-    },
-    headers: {
-      'Access-Control-Allow-Origin': '*'
     }
   }
 };

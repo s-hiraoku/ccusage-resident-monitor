@@ -4,7 +4,9 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "swift-server.swift-lang"
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next"
       ]
     }
   },

@@ -9,7 +9,7 @@ export const Controls: React.FC = () => {
   };
 
   const handleQuit = () => {
-    window.close();
+    window.electronAPI.closeWindow();
   };
 
   return (

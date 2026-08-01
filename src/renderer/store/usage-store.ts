@@ -59,19 +59,25 @@ export const setupUsageMonitoring = () => {
   const store = useUsageStore.getState();
   
   // ElectronAPIからの自動更新を監視
-  window.electronAPI.onUsageUpdate((usage: UsageData) => {
+  const removeUsageListener = window.electronAPI.onUsageUpdate((usage: UsageData) => {
     console.log('Usage update received:', usage);
     store.setUsage(usage);
   });
   
   // 手動更新イベントの監視
-  window.addEventListener('refresh-usage', () => {
+  const handleRefresh = () => {
     console.log('Manual refresh requested');
     store.refreshUsage();
-  });
+  };
+  window.addEventListener('refresh-usage', handleRefresh);
   
   // 初回データ取得
   store.refreshUsage();
   
   console.log('Usage monitoring setup completed');
+
+  return () => {
+    removeUsageListener();
+    window.removeEventListener('refresh-usage', handleRefresh);
+  };
 };

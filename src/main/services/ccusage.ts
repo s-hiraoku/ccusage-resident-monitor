@@ -10,7 +10,12 @@ export class CCUsageService {
       const response = this.parseJSON(output);
       
       // ccusageのdailyコマンドは今日の使用量を含む配列を返す
-      const today = new Date().toISOString().split('T')[0];
+      const now = new Date();
+      const today = [
+        now.getFullYear(),
+        String(now.getMonth() + 1).padStart(2, '0'),
+        String(now.getDate()).padStart(2, '0')
+      ].join('-');
       const todayUsage = response.daily?.find((d: any) => d.date === today) || {
         inputTokens: 0,
         outputTokens: 0,

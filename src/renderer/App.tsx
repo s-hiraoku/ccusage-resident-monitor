@@ -12,13 +12,13 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // コンポーネントマウント時に監視を開始
-    setupUsageMonitoring();
+    const stopUsageMonitoring = setupUsageMonitoring();
     
     console.log('App component mounted');
 
     // クリーンアップ
     return () => {
-      window.electronAPI.removeUsageListener();
+      stopUsageMonitoring();
       console.log('App component unmounted');
     };
   }, []);

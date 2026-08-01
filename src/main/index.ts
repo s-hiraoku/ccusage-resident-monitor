@@ -1,4 +1,4 @@
-import { app, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, type Event as ElectronEvent, type IpcMainEvent } from 'electron';
 import { TrayManager } from './tray';
 import { CCUsageService } from './services/ccusage';
 import { UsageData } from '@shared/types';
@@ -28,7 +28,7 @@ class CCUsageMonitorApp {
     });
 
     // 全てのウィンドウが閉じられても終了しない（システムトレイアプリとして動作）
-    app.on('window-all-closed', (event) => {
+    app.on('window-all-closed', (event: ElectronEvent) => {
       event.preventDefault();
     });
 
@@ -60,6 +60,10 @@ class CCUsageMonitorApp {
     ipcMain.on('refresh-usage', async () => {
       await this.fetchAndBroadcastUsage();
     });
+
+    ipcMain.on('close-window', (event: IpcMainEvent) => {
+      BrowserWindow.fromWebContents(event.sender)?.close();
+    });
   }
 
   private startMonitoring(): void {
@@ -90,7 +94,7 @@ class CCUsageMonitorApp {
       if (this.trayManager) {
         // ウィンドウが存在する場合のみ送信
         try {
-          const windows = require('electron').BrowserWindow.getAllWindows();
+          const windows = BrowserWindow.getAllWindows();
           windows.forEach(window => {
             window.webContents.send('usage-updated', usage);
           });

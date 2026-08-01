@@ -39,8 +39,8 @@ export enum CCUsageError {
 
 export interface ElectronAPI {
   fetchUsage: () => Promise<UsageData>;
-  onUsageUpdate: (callback: (usage: UsageData) => void) => void;
-  removeUsageListener: () => void;
+  onUsageUpdate: (callback: (usage: UsageData) => void) => () => void;
+  closeWindow: () => void;
 }
 
 declare global {

@@ -1,4 +1,4 @@
-import { contextBridge, ipcRenderer } from 'electron';
+import { contextBridge, ipcRenderer, type IpcRendererEvent } from 'electron';
 import { UsageData, ElectronAPI } from '@shared/types';
 
 // メインプロセスとレンダラープロセス間の安全な通信を提供
@@ -9,16 +9,15 @@ const electronAPI: ElectronAPI = {
   },
 
   // 使用量更新の監視
-  onUsageUpdate: (callback: (usage: UsageData) => void): void => {
-    ipcRenderer.on('usage-updated', (_, usage: UsageData) => {
+  onUsageUpdate: (callback: (usage: UsageData) => void): (() => void) => {
+    const listener = (_: IpcRendererEvent, usage: UsageData) => {
       callback(usage);
-    });
+    };
+    ipcRenderer.on('usage-updated', listener);
+    return () => ipcRenderer.removeListener('usage-updated', listener);
   },
 
-  // 使用量更新リスナーの削除
-  removeUsageListener: (): void => {
-    ipcRenderer.removeAllListeners('usage-updated');
-  }
+  closeWindow: (): void => ipcRenderer.send('close-window')
 };
 
 // レンダラープロセスでelectronAPIをグローバルに利用可能にする

@@ -1,4 +1,4 @@
-import { app, Tray, Menu, BrowserWindow, nativeImage } from 'electron';
+import { app, Tray, Menu, BrowserWindow, nativeImage, type NativeImage } from 'electron';
 import path from 'path';
 
 export class TrayManager {
@@ -84,9 +84,8 @@ export class TrayManager {
     return path.join(__dirname, '../../assets/icons', iconName);
   }
 
-  private createPlaceholderIcon(): nativeImage {
+  private createPlaceholderIcon(): NativeImage {
     // 16x16の簡単なプレースホルダーアイコンを作成
-    const size = { width: 16, height: 16 };
     const icon = nativeImage.createEmpty();
     
     // macOSではsetTemplateImageを使用
